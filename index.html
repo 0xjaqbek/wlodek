@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+function updateContent() {
+            // Update hero section
+            document.querySelector('.hero h1').textContent = translations[currentLang].title;
+            document.querySelector('.hero p').textContent = translations[currentLang].subtitle;
+            document.querySelector('.contact-button').textContent = translations[currentLang].contact;
+
+            // Update services
+            const servicesGrid = document.getElementById('servicesGrid');
+            servicesGrid.innerHTML = translations[currentLang].services.map((service, index) => `
+                <div class="service-card" onclick="showModal(${index})">
+                    <img src="/api/placeholder/400/200" alt="${service.title}" class="service-image">
+                    <div class="service-content">
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                        <ul>
+                            ${service.details.slice(0, 3).map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                        <a href="#" class="read-more-button">${translations[currentLang].readMore}</a>
+                    </div>
+                </div>
+            `).join('');
+        }<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
