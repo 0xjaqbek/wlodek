@@ -537,13 +537,36 @@
             setLanguage('pl');
         });
 
+        function getServiceImageName(serviceTitle) {
+            const imageMap = {
+                'Sasanka Viva 700': 'sasanka-viva-700.webp',
+                'Saturn 25 ze sternikiem': 'saturn-25.webp',
+                'Motorówka 5-osobowa': 'motorboat-5person.webp',
+                'Deski SUP': 'sup-boards.webp',
+                'Szkolenia': 'first-aid-training.webp',
+                // English versions
+                'Sasanka Viva 700': 'sasanka-viva-700.webp',
+                'Saturn 25 with Skipper': 'saturn-25.webp',
+                '5-Person Motorboat': 'motorboat-5person.webp',
+                'SUP Boards': 'sup-boards.webp',
+                'Training': 'first-aid-training.webp',
+                // German versions
+                'Sasanka Viva 700': 'sasanka-viva-700.webp',
+                'Saturn 25 mit Steuermann': 'saturn-25.webp',
+                '5-Personen-Motorboot': 'motorboat-5person.webp',
+                'SUP-Bretter': 'sup-boards.webp',
+                'Schulungen': 'first-aid-training.webp'
+            };
+            return imageMap[serviceTitle] || 'placeholder.webp';
+        }
+
         function showModal(serviceIndex) {
             const service = translations[currentLang].services[serviceIndex];
             const modal = document.getElementById('serviceModal');
             const modalContent = document.getElementById('modalContent');
 
             modalContent.innerHTML = `
-                <img src="/api/placeholder/800/400" alt="${service.title}" class="modal-image">
+                <img src="${getServiceImageName(service.title)}" alt="${service.title}" class="modal-image">
                 <h2>${service.title}</h2>
                 <p>${service.fullDescription}</p>
                 <div class="modal-details">
@@ -571,7 +594,7 @@
             document.body.style.overflow = 'auto';
         }
 
-       function updateContent() {
+        function updateContent() {
             // Update hero section
             document.querySelector('.hero h1').textContent = translations[currentLang].title;
             document.querySelector('.hero p').textContent = translations[currentLang].subtitle;
@@ -581,7 +604,7 @@
             const servicesGrid = document.getElementById('servicesGrid');
             servicesGrid.innerHTML = translations[currentLang].services.map((service, index) => `
                 <div class="service-card" onclick="showModal(${index})">
-                    <img src="/api/placeholder/400/200" alt="${service.title}" class="service-image">
+                    <img src="${getServiceImageName(service.title)}" alt="${service.title}" class="service-image">
                     <div class="service-content">
                         <h3>${service.title}</h3>
                         <p>${service.description}</p>
