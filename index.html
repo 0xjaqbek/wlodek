@@ -347,6 +347,23 @@
                         ],
                         location: 'Przystań jachtowa PTTK'
                     },
+                            {
+            title: 'Zdjęcia',
+            description: 'Galeria zdjęć z naszych rejsów',
+            fullDescription: `
+                Zapraszamy do obejrzenia naszej bogatej galerii zdjęć dokumentujących piękno żeglarstwa 
+                i niezapomniane chwile spędzone na jeziorze Wdzydzkim. Nasza kolekcja obejmuje ujęcia 
+                krajobrazów, jachtów w akcji oraz szczęśliwych klientów podczas rejsów.
+            `,
+            details: [
+                'Ponad 10 zdjęć z różnych rejsów',
+                'Dokumentacja naszych usług',
+                'Inspiracja dla przyszłych żeglarzy'
+            ],
+            location: 'Dostępne online w naszej galerii'
+        }
+    ]
+},
                     {
                         title: 'Szkolenia',
                         description: 'Pierwsza pomoc przedmedyczna',
@@ -432,6 +449,23 @@
                         ],
                         location: 'PTTK Yacht Marina'
                     },
+                            {
+            title: 'Photos',
+            description: 'Gallery of our sailing trips',
+            fullDescription: `
+                Explore our extensive photo gallery documenting the beauty of sailing 
+                and unforgettable moments spent on Wdzydze Lake. Our collection includes 
+                landscape shots, yachts in action, and happy clients during their voyages.
+            `,
+            details: [
+                'Over 10 photos from various trips',
+                'Documentation of our services',
+                'Inspiration for future sailors'
+            ],
+            location: 'Available online in our gallery'
+        }
+    ]
+},
                     {
                         title: 'Training',
                         description: 'First Aid Training',
@@ -517,6 +551,23 @@
                         ],
                         location: 'PTTK Yachthafen'
                     },
+                            {
+            title: 'Fotos',
+            description: 'Galerie unserer Segeltouren',
+            fullDescription: `
+                Erkunden Sie unsere umfangreiche Fotogalerie, die die Schönheit des Segelns 
+                und unvergessliche Momente auf dem Wdzydze-See dokumentiert. Unsere Sammlung 
+                umfasst Landschaftsaufnahmen, Yachten in Aktion und glückliche Kunden während ihrer Reisen.
+            `,
+            details: [
+                'Über 10 Fotos von verschiedenen Touren',
+                'Dokumentation unserer Dienstleistungen',
+                'Inspiration für zukünftige Segler'
+            ],
+            location: 'Online in unserer Galerie verfügbar'
+        }
+    ]
+},
                     {
                         title: 'Schulungen',
                         description: 'Erste-Hilfe-Schulung',
@@ -555,28 +606,33 @@
             setLanguage('pl');
         });
 
-        function getServiceImageName(serviceTitle) {
-            const imageMap = {
-                'Sasanka Viva 700': 'sasanka-viva-700.webp',
-                'Saturn 25 ze sternikiem': 'saturn-25.webp',
-                'Motorówka 5-osobowa': 'motorboat-5person.webp',
-                'Deski SUP': 'sup-boards.webp',
-                'Szkolenia': 'first-aid-training.png',
-                // English versions
-                'Sasanka Viva 700': 'sasanka-viva-700.webp',
-                'Saturn 25 with Skipper': 'saturn-25.webp',
-                '5-Person Motorboat': 'motorboat-5person.webp',
-                'SUP Boards': 'sup-boards.webp',
-                'Training': 'first-aid-training.webp',
-                // German versions
-                'Sasanka Viva 700': 'sasanka-viva-700.webp',
-                'Saturn 25 mit Steuermann': 'saturn-25.webp',
-                '5-Personen-Motorboot': 'motorboat-5person.webp',
-                'SUP-Bretter': 'sup-boards.webp',
-                'Schulungen': 'first-aid-training.webp'
-            };
-            return imageMap[serviceTitle] || 'placeholder.webp';
-        }
+function getServiceImageName(serviceTitle) {
+    const imageMap = {
+        'Sasanka Viva 700': 'sasanka-viva-700.webp',
+        'Saturn 25 ze sternikiem': 'saturn-25.webp',
+        'Motorówka 5-osobowa': 'motorboat-5person.webp',
+        'Deski SUP': 'sup-boards.webp',
+        'Szkolenia': 'first-aid-training.webp',
+        'Zdjęcia': 'gallery-cover.webp', // New gallery cover image
+        // English versions
+        'Sasanka Viva 700': 'sasanka-viva-700.webp',
+        'Saturn 25 with Skipper': 'saturn-25.webp',
+        '5-Person Motorboat': 'motorboat-5person.webp',
+        'SUP Boards': 'sup-boards.webp',
+        'Training': 'first-aid-training.webp',
+        'Photos': 'gallery-cover.webp',
+        // German versions
+        'Sasanka Viva 700': 'sasanka-viva-700.webp',
+        'Saturn 25 mit Steuermann': 'saturn-25.webp',
+        '5-Personen-Motorboot': 'motorboat-5person.webp',
+        'SUP-Bretter': 'sup-boards.webp',
+        'Schulungen': 'first-aid-training.webp',
+        'Fotos': 'gallery-cover.webp'
+    };
+    return imageMap[serviceTitle] || 'placeholder.webp';
+}
+
+
 
         function showModal(serviceIndex) {
             const service = translations[currentLang].services[serviceIndex];
@@ -612,28 +668,141 @@
             document.body.style.overflow = 'auto';
         }
 
-        function updateContent() {
-            // Update hero section
-            document.querySelector('.hero h1').textContent = translations[currentLang].title;
-            document.querySelector('.hero p').textContent = translations[currentLang].subtitle;
-            document.querySelector('.contact-button').textContent = translations[currentLang].contact;
+        function showPhotoGallery(serviceIndex) {
+    const service = translations[currentLang].services[serviceIndex];
+    const modal = document.getElementById('serviceModal');
+    const modalContent = document.getElementById('modalContent');
 
-            // Update services
-            const servicesGrid = document.getElementById('servicesGrid');
-            servicesGrid.innerHTML = translations[currentLang].services.map((service, index) => `
-                <div class="service-card" onclick="showModal(${index})">
-                    <img src="${getServiceImageName(service.title)}" alt="${service.title}" class="service-image">
-                    <div class="service-content">
-                        <h3>${service.title}</h3>
-                        <p>${service.description}</p>
-                        <ul>
-                            ${service.details.slice(0, 3).map(detail => `<li>${detail}</li>`).join('')}
-                        </ul>
-                        <a href="#" class="read-more-button">${translations[currentLang].readMore}</a>
-                    </div>
+    // Generate gallery HTML
+    const galleryHTML = (() => {
+        let html = `
+            <img src="${getServiceImageName(service.title)}" alt="${service.title}" class="modal-image">
+            <h2>${service.title}</h2>
+            <p>${service.fullDescription}</p>
+            <div class="photo-gallery">
+        `;
+
+        // Generate thumbnails for images 1 through 11
+        for (let i = 1; i <= 11; i++) {
+            html += `
+                <div class="gallery-thumbnail" onclick="openFullImage('${i}.webp')">
+                    <img src="${i}.webp" alt="Photo ${i}">
                 </div>
-            `).join('');
+            `;
         }
+
+        html += `
+            </div>
+        `;
+
+        return html;
+    })();
+
+    modalContent.innerHTML = galleryHTML;
+
+    // Add gallery styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .gallery-thumbnail {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery-thumbnail:hover {
+            transform: scale(1.05);
+        }
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        #fullImageModal {
+            display: none;
+            position: fixed;
+            z-index: 1200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+        }
+        #fullImageModal img {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    `;
+    document.body.appendChild(style);
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function openFullImage(imageSrc) {
+    const fullImageModal = document.getElementById('fullImageModal') || createFullImageModal();
+    const fullImage = fullImageModal.querySelector('img');
+    fullImage.src = imageSrc;
+    fullImageModal.style.display = 'block';
+}
+
+function createFullImageModal() {
+    const modal = document.createElement('div');
+    modal.id = 'fullImageModal';
+    modal.innerHTML = `
+        <img src="" alt="Full size image">
+        <button onclick="this.parentElement.style.display='none'" style="
+            position: absolute; 
+            top: 15px; 
+            right: 15px; 
+            background: rgba(255,255,255,0.2); 
+            color: white; 
+            border: none; 
+            padding: 10px; 
+            cursor: pointer;
+        ">&times;</button>
+    `;
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function updateContent() {
+    // Update hero section
+    document.querySelector('.hero h1').textContent = translations[currentLang].title;
+    document.querySelector('.hero p').textContent = translations[currentLang].subtitle;
+    document.querySelector('.contact-button').textContent = translations[currentLang].contact;
+
+    // Update services
+    const servicesGrid = document.getElementById('servicesGrid');
+    servicesGrid.innerHTML = translations[currentLang].services.map((service, index) => `
+        <div class="service-card" onclick="${
+            ['Zdjęcia', 'Photos', 'Fotos'].includes(service.title) 
+            ? `showPhotoGallery(${index})` 
+            : `showModal(${index})`
+        }">
+            <img src="${getServiceImageName(service.title)}" alt="${service.title}" class="service-image">
+            <div class="service-content">
+                <h3>${service.title}</h3>
+                <p>${service.description}</p>
+                <ul>
+                    ${service.details.slice(0, 3).map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+                <a href="#" class="read-more-button">${translations[currentLang].readMore}</a>
+            </div>
+        </div>
+    `).join('');
+}
 
         // Close modal when clicking outside
         window.onclick = function(event) {
