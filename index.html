@@ -502,13 +502,27 @@
         };
 
         let currentLang = 'pl';
-        const langs = ['pl', 'en', 'de'];
 
-        function toggleLanguage() {
-            const currentIndex = langs.indexOf(currentLang);
-            const nextIndex = (currentIndex + 1) % langs.length;
-            currentLang = langs[nextIndex];
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active language button
+            document.querySelectorAll('.language-button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
             updateContent();
+        }
+
+        // Set initial language
+        function initLanguage() {
+            const langButtons = document.querySelectorAll('.language-button');
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === currentLang) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
         function showModal(serviceIndex) {
@@ -580,6 +594,7 @@
         }
 
         // Initial content update
+        initLanguage();
         updateContent();
     </script>
 </body>
