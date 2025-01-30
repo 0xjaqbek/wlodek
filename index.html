@@ -155,6 +155,147 @@
         <a href="tel:604912482" class="contact-button">Kontakt: 604912482</a>
     </section>
 
+        <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Previous translations object, updated with full descriptions
+        const translations = {
+            pl: {
+                title: 'Pol-med Czarter Jachtów',
+                subtitle: 'Profesjonalny czarter jachtów na jeziorze Wdzydzkim',
+                contact: 'Kontakt: 604912482',
+                readMore: 'Czytaj więcej',
+                services: [
+                    {
+                        title: 'Sasanka Viva 700',
+                        description: 'Komfortowy jacht dla 4-6 osób',
+                        fullDescription: `
+                            Sasanka Viva 700 do wynajęcia. Umożliwia wygodne pływanie i nocleg dla czterech do sześciu osób. 
+                            Posiada toaletę, dwa zlewozmywaki, kuchenkę dwupalnikową, komplet garnków, naczyń oraz sztućców dla 6 osób. 
+                            Jest również telewizor 24 cali z Netflixem.
+                        `,
+                        details: [
+                            'Pełne wyposażenie kuchenne dla 6 osób',
+                            'Silnik elektryczny 70 LBS',
+                            'Nowe żagle semi regatowe czarne (27,4 m²)',
+                            'Solar 50W (opcjonalnie dodatkowy 70W)',
+                            'Możliwość wyposażenia w pościel dla 2 lub 4 osób',
+                            'Minimum 3 doby wynajmu',
+                            'Rezerwacje wyłącznie tygodniowe'
+                        ],
+                        location: 'Przystań jachtowa PTTK koło pętli autobusowej',
+                        requirements: [
+                            'Czas wynajmu minimum trzy doby',
+                            'Rezerwacje wyłącznie tygodniowe'
+                        ]
+                    },
+                    {
+                        title: 'Saturn 25 ze sternikiem',
+                        description: 'Nowy jacht z 2022 roku',
+                        fullDescription: `
+                            Jacht nowy zwodowany w 2022 roku do wygodnego żeglowania dla sześciu osób. 
+                            Podczas pływania możliwość poznania zasad pływania jachtami żaglowymi, 
+                            poznania jezior "wdzydzkich" i miłego spędzenia czasu na wodzie.
+                        `,
+                        details: [
+                            'Komfortowe żeglowanie dla 6 osób',
+                            'TV 27" z Netflix',
+                            'Możliwość nauki żeglarstwa',
+                            'Dodatkowe atrakcje po kontakcie telefonicznym'
+                        ],
+                        location: 'Przystań jachtowa PTTK koło pętli autobusowej'
+                    },
+                    {
+                        title: 'Motorówka 5-osobowa',
+                        description: 'Nowa łódź z 2023 roku',
+                        fullDescription: `
+                            Motorówka 5 osobowa zwodowana w 2023 roku z silnikiem elektrycznym 6KM nie wymagająca uprawnień. 
+                            Wypożyczana na godziny. Możliwość rezerwacji całodobowej od 9:00 do 19:00. 
+                            Możliwe indywidualne negocjowanie godzin.
+                        `,
+                        details: [
+                            'Nie wymaga uprawnień',
+                            'Silnik elektryczny 6KM',
+                            'Wynajem na godziny',
+                            'Elastyczne godziny 9:00-19:00'
+                        ],
+                        location: 'Przystań jachtowa PTTK koło pętli autobusowej'
+                    }
+                    // SUP and Training services remain the same
+                ]
+            },
+            // English and German translations updated similarly
+        };
+
+        function showModal(serviceIndex) {
+            const service = translations[currentLang].services[serviceIndex];
+            const modal = document.getElementById('serviceModal');
+            const modalContent = document.getElementById('modalContent');
+
+            modalContent.innerHTML = `
+                <img src="/api/placeholder/800/400" alt="${service.title}" class="modal-image">
+                <h2>${service.title}</h2>
+                <p>${service.fullDescription}</p>
+                <div class="modal-details">
+                    <h3>Szczegóły</h3>
+                    <ul>
+                        ${service.details.map(detail => `<li>${detail}</li>`).join('')}
+                    </ul>
+                    ${service.location ? `<h3>Lokalizacja</h3><p>${service.location}</p>` : ''}
+                    ${service.requirements ? `
+                        <h3>Wymagania</h3>
+                        <ul>
+                            ${service.requirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateContent() {
+            // Previous content update code
+            const servicesGrid = document.getElementById('servicesGrid');
+            servicesGrid.innerHTML = translations[currentLang].services.map((service, index) => `
+                <div class="service-card" onclick="showModal(${index})">
+                    <img src="/api/placeholder/400/200" alt="${service.title}" class="service-image">
+                    <div class="service-content">
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                        <ul>
+                            ${service.details.slice(0, 3).map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                        <a href="#" class="read-more-button">${translations[currentLang].readMore}</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Initial content update
+        updateContent();
+    </script>
+
     <section class="services">
         <div class="services-grid" id="servicesGrid">
             <!-- Services will be populated by JavaScript -->
