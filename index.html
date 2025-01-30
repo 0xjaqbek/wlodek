@@ -38,15 +38,28 @@
         }
 
         .language-switcher {
-            background: #2563eb;
-            color: white;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: #e0e7ff;
+            color: #1e40af;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .lang-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            background: #3b82f6;
+            color: white;
         }
 
         /* Hero section */
@@ -207,9 +220,11 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">Pol-med Czarter Jachtów</div>
-            <button class="language-switcher" onclick="toggleLanguage()">
-                <span class="current-lang">PL</span>
-            </button>
+            <div class="language-switcher">
+                <button onclick="setLanguage('pl')" class="lang-btn" data-lang="pl">PL</button>
+                <button onclick="setLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+                <button onclick="setLanguage('de')" class="lang-btn" data-lang="de">DE</button>
+            </div>
         </div>
     </nav>
 
@@ -506,24 +521,21 @@
         function setLanguage(lang) {
             currentLang = lang;
             
-            // Update active language button
-            document.querySelectorAll('.language-button').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
+            // Update active state of language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
             });
             
             updateContent();
         }
 
-        // Set initial language
-        function initLanguage() {
-            const langButtons = document.querySelectorAll('.language-button');
-            langButtons.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.lang === currentLang) {
-                    btn.classList.add('active');
-                }
-            });
-        }
+        // Set initial active state
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('pl');
+        });
 
         function showModal(serviceIndex) {
             const service = translations[currentLang].services[serviceIndex];
@@ -594,7 +606,6 @@
         }
 
         // Initial content update
-        initLanguage();
         updateContent();
     </script>
 </body>
