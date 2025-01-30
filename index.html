@@ -770,10 +770,16 @@ function createFullImageModal() {
             top: 15px; 
             right: 15px; 
             background: rgba(255,255,255,0.2); 
-            color: white; 
+            color: white;  // Text color of the X
             border: none; 
-            padding: 10px; 
+            font-size: 36px;  // Make it larger for mobile
+            width: 50px;  // Make it easier to tap
+            height: 50px; 
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;  // Make it circular
             cursor: pointer;
+            transition: background-color 0.3s;
         ">&times;</button>
     `;
     document.body.appendChild(modal);
