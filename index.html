@@ -64,10 +64,28 @@
 
         /* Hero section */
         .hero {
-            background: #2563eb;
+            background: #2563eb url('tlo.png') no-repeat center center;
+            background-size: cover;
             color: white;
             padding: 8rem 1rem 4rem;
             text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(37, 99, 235, 0.7); /* Overlay to improve text readability */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -219,7 +237,6 @@
 <body>
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo">Pol-med Czarter Jachtów</div>
             <div class="language-switcher">
                 <button onclick="setLanguage('pl')" class="lang-btn" data-lang="pl">PL</button>
                 <button onclick="setLanguage('en')" class="lang-btn" data-lang="en">EN</button>
@@ -229,9 +246,11 @@
     </nav>
 
     <section class="hero">
-        <h1>Pol-med Czarter Jachtów</h1>
-        <p>Profesjonalny czarter jachtów na jeziorze Wdzydzkim</p>
-        <a href="tel:604912482" class="contact-button">Kontakt: 604912482</a>
+        <div class="hero-content">
+            <h1>Pol-med Czarter Jachtów</h1>
+            <p>Profesjonalny czarter jachtów na jeziorze Wdzydzkim</p>
+            <a href="tel:604912482" class="contact-button">Kontakt: 604912482</a>
+        </div>
     </section>
 
     <div id="serviceModal" class="modal">
