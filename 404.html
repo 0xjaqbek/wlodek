@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przekierowanie - Pol-med Czarter Jachtów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 20px;
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const path = window.location.pathname;
+            if (path === '/kontakt' || path === '/uslugi-2') {
+                // Redirect to homepage
+                window.location.href = '/';
+            }
+        };
+    </script>
+    <!-- Fallback redirect for browsers with JavaScript disabled -->
+    <meta http-equiv="refresh" content="0; url=/">
+</head>
+<body>
+    <div class="container">
+        <h1>Przekierowanie</h1>
+        <div class="loading"></div>
+        <p>Trwa przekierowanie na stronę główną...</p>
+        <p>Jeśli nie zostaniesz przekierowany automatycznie, <a href="/">kliknij tutaj</a>.</p>
+        <p style="margin-top: 30px; font-size: 0.9em; color: #888;">
+            Pol-med Czarter Jachtów<br>
+            Wdzydze Kiszewskie
+        </p>
+    </div>
+</body>
+</html>
