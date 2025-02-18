@@ -207,13 +207,54 @@
             margin-bottom: 15px;
         }
 
-        /* Footer */
+      /* Footer */
         footer {
             background: #1e293b;
             color: white;
-            padding: 2rem 1rem;
-            text-align: center;
             margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .footer-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-subtitle {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-text {
+            margin-bottom: 0.25rem;
+        }
+        
+        .footer-copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 640px) {
+            .footer-content {
+                padding: 1.5rem;
+                text-align: center;
+            }
         }
 
         /* Responsive adjustments */
@@ -266,8 +307,38 @@
     </section>
 
     <footer>
-        <p>© 2025 Pol-med Czarter Jachtów</p>
-        <p>Wdzydze Kiszewskie</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-title">Pol-med</div>
+                <div class="footer-text">Włodzimierz Roznerski</div>
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-text"><strong>NIP:</strong> 5911020760</div>
+                <div class="footer-text"><strong>Bank:</strong> BNP Paribas</div>
+                <div class="footer-text">72 1600 1462 1885 0469 7000 0001</div>
+                <div class="footer-text"><strong>E-mail:</strong> wlod251@mp.pl</div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-subtitle">Telefon</div>
+                <div class="footer-text">Biuro: +48 604912482</div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-subtitle">Adres</div>
+                <div class="footer-text">ul. Świętopełka 2c/a1</div>
+                <div class="footer-text">83-400 Kościerzyna</div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-text">Wdzydze Kiszewskie</div>
+            </div>
+
+            <div class="footer-copyright">
+                <div class="footer-text">© 2025 Pol-med Czarter Jachtów</div>
+            </div>
+        </div>
     </footer>
 
     <script>
